@@ -10,13 +10,13 @@ const buttonPrev = document
                         .addEventListener('click', () => main(prevUrl));
 
 async function main(url){
-    document.querySelector('.container').innerHTML = '';
-    const data = await sendRequest(url);
-    nextUrl = data.next;
-    prevUrl = data.previous;
+    document.querySelector('.list').innerHTML = '';
+    const getApi = await sendRequest(url);
+    nextUrl = getApi.next;
+    prevUrl = getApi.previous;
     checkPrevDisabling();
 
-    data.results.forEach(element => {
+    getApi.results.forEach(element => {
        const pokemon = new DrawPokemon(element.name, element.url);
        pokemon.createPokemonList();
     });
@@ -46,7 +46,7 @@ class DrawPokemon {
     createPokemonList(){
         const pokemonButton = document.createElement('button');
         pokemonButton.className = 'card';
-        document.querySelector('.container').append(pokemonButton);
+        document.querySelector('.list').append(pokemonButton);
         pokemonButton.innerHTML = `${this.name}`;
         pokemonButton.addEventListener('click', () => this.drawPokemonCard());
     }
@@ -55,7 +55,51 @@ class DrawPokemon {
         const getMoreData = new PokemonApi(this.url);
         const data = await getMoreData.getInfo();
         console.log(data)
+        this.drawCard(data)
     }
+
+    drawCard(data){
+        let card = document.createElement('div');
+        card.className = 'pokemon';
+        document.querySelector('.pokemonCardsContent').append(card);
+
+        const pokemonName = document.createElement('div')
+        pokemonName.className = 'pokemonName';
+        card.append(pokemonName);
+        pokemonName.innerHTML = `${data.name}`;
+
+        const spriteBlock = document.createElement('div');
+        spriteBlock.className = 'sprite';
+        pokemonName.after(spriteBlock);
+        spriteBlock.innerHTML = `<img src="${data.img}">`
+
+        const statsBlock = document.createElement('div');
+        statsBlock.className = 'stats';
+        spriteBlock.after(statsBlock);
+        statsBlock.innerHTML = `<span>HP: ${data.stats[0].base_stat}</span><span>ATK: ${data.stats[1].base_stat}</span><span>DEF: ${data.stats[2].base_stat}</span>`
+
+        const abilitiesBlock = document.createElement('div');
+        abilitiesBlock.className = 'abilities';
+        statsBlock.after(abilitiesBlock);
+
+        const closeButton = document.createElement('button');
+        closeButton.className = 'close';
+        card.append(closeButton);
+        closeButton.innerHTML = 'X';
+        closeButton.addEventListener('click', () => this.closeCard(card))
+
+        data.ability.forEach(element =>{
+            const abilityText = document.createElement('p');
+            abilityText.className = 'skill';
+            abilitiesBlock.append(abilityText);
+            abilityText.innerHTML = `${element.name}: ${element.effect}`
+        })
+
+    }
+
+    closeCard(card){
+        card.remove()
+    };
 };
 
 class PokemonApi {

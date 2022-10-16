@@ -7,40 +7,25 @@
     <title>Document</title>
 </head>
 <body class="body">
-    <div class="bigContainer">        
-        <div class="pokeCard">
-            <h3 class="pokeName"></h3>
-            <div class="pokeImg"></div>
-            <div class="pokeStats">
-                <div class="HP">
-                    <h4>HP</h4>
-                    <span class="hpValue"></span>
-                </div>
-                <div class="DEF">
-                    <h4>DEF</h4>
-                    <span class="defValue"></span>
-                </div>
-                <div class="ATK">
-                    <h4>ATK</h4>
-                    <span class="atkValue"></span>
-                </div>
-            </div>
-            <div class="pokeSkills">
-                <div class="firstSkill">
-                    <h4 class="firstSkillName">pokeStats</h4>
-                    <span class="firstSkillEffect">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate amet laboriosam velit.</span>
-                </div>
-                <div class="secondSkill">
-                    <h4 class="secondSkillName">pokeStats</h4>
-                    <span class="secondSkillEffect">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus provident eum quam!</span>
-                </div>
-            </div>
+    <div class="container">
+        <div class="logo">
+            <img src="src/logo.png" alt="logo" class="logoImg">
         </div>
-        <button class="closeButton">X</button>
+        <div class="content">
+            <div class="pokemonList">
+                <h3 class = "contentTitle">Choise your Pokemon</h3>
+                <div class="list"></div>
+                <div class="buttons">
+                    <button id="prev" disabled>PREV</button>
+                    <button id="next">NEXT</button>
+                </div>
+            </div>
+            <div class="pokemonCards">
+                <h3 class = "contentTitle">Here you can look on your pokemon</h3>
+                <div class="pokemonCardsContent"></div>
+            </div>            
+        </div>
     </div>
-    <div class="container"></div>
-    <button id="prev" disabled>PREV</button>
-    <button id="next">NEXT</button>
     <script src="script4.js"></script>
 </body>
 </html>
