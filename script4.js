@@ -84,8 +84,8 @@ class DrawPokemon {
 
         const closeButton = document.createElement('button');
         closeButton.className = 'close';
-        card.append(closeButton);
-        closeButton.innerHTML = 'X';
+        pokemonName.append(closeButton);
+        closeButton.innerHTML = '<img class="xMark" src="src/xmark-solid.svg">';
         closeButton.addEventListener('click', () => this.closeCard(card))
 
         data.ability.forEach(element =>{
@@ -105,7 +105,6 @@ class DrawPokemon {
 class PokemonApi {
     constructor(url){
         this.url = url;
-        console.log(this.url)
     }
 
     async getInfo(){
@@ -127,7 +126,7 @@ class PokemonApi {
             skill.name = abilitiesData.name;            
             abilitiesData.effect_entries.forEach(element => {
                 if (element.language.name === 'en'){
-                    skill.effect = element.effect;
+                    skill.effect = element.short_effect;
                 };
             });
             ability.push(skill);

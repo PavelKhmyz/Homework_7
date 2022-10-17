@@ -17,10 +17,12 @@
 .container{
     background-color: black;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
+    padding: 0 10px 50px 10px;
+
 }
 .content{
-    width: 1170px;
+    max-width: 1170px;
     margin: 30px auto;
     background-color: #F6CF57;
     border-radius: 10px;
@@ -36,18 +38,25 @@
     flex-direction: column;
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
 }
+
 .pokemonCards{
     min-height: 100%;
-    min-width: 79%;
+    max-width: 79%;
+    width: 100%;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
 }
 .pokemonCardsContent{
-    height: 100%;
+    max-height: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+}
+@media (max-width: 1170px) {
+    .pokemonCardsContent{
+        justify-content: center;
+    }
 }
 .contentTitle{
     font-family: "pokemon";
@@ -113,6 +122,7 @@
     border: 1px solid black;
     border-radius: 10px;
     padding: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -122,7 +132,10 @@
 .pokemonName{
     font-family: pokemon;
     font-size: 20px;
+    width: 80%;
+    text-align: center;
     text-transform: capitalize;
+    letter-spacing: 3px;
 }
 
 .sprite{
@@ -135,23 +148,25 @@
     margin-bottom: 20px;
     background-color: #caab4b;
     border-radius: 10px;
-    height: 60px;
+    min-height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 span{
     font-family: pokemon;
+    letter-spacing: 3px;
 }
 p{
     font-family: pokemon; 
-    font-size: 10px;
-    letter-spacing: 2px;
-    line-height: 12px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    line-height: 20px;
+    text-transform: capitalize;
 }
 .abilities{
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     background-color: #caab4b;
     width: 100%;
     height: 260px;
@@ -161,22 +176,28 @@ img{
     height: auto;
 }
 .skill{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .close{
     background-color: #caab4b;
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30px;
     min-height: 30px;
     border-radius: 40px;
     position: relative;
-    bottom: 640px;
-    left: 200px;
+    left: 340px;
+    bottom: 30px;
+    
 }
 .close:hover{
-    color: red;
+    background-color: red;
 }
 .close:active{
-    color: white;
-    background-color: red;
+    background-color: rgb(161, 4, 4);
+}
+.xMark{
+    width: 50%;
+    height: auto;
 }
